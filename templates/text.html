@@ -1,0 +1,64 @@
+$def with(post)
+<script type="text/javascript" src="static/js/jquery.js"></script>   
+<script type="text/javascript" src="static/js/helps.js"></script> 
+<link rel="stylesheet" href="static/css/main.css">
+
+<script type="text/javascript">
+    imgJson={"width":$post['width'],
+             "height":$post['height'],
+             "uuid":"$post['uuid']",
+             "billModel":"",
+             "iscut":false,//是否多票据识别
+             "isclass":false,//是否自动进行票据分类
+             'istext':true,//文字检测
+            }
+
+</script> 
+
+<div>
+$for bill in post['billList']:
+    <div style="font-size:10px" class="billname" onclick="getValue('$bill',this)"><a href="#" class="button"><span >$bill</span>/ </a></div>
+</div>
+</br>
+<div class="imgInput">
+    
+    <div class= "imgInput">
+     <input type="text" id ="texturl" style="width:$post['textwidth']px;"  placeholder="图像URL地址">
+     <button class="imagebutton" onclick="postBill('$post['url']')" >识别</button>
+    </div> 
+    <div class= "imgInput" style="width:200px;">
+    <label for="fileupload" >
+        <input type="button" id="btn" value="上传本地图片">
+        <input type="file"  id='imageButton' accept="image/png, image/bmp, image/jpg, image/jpeg">
+        </div>    
+    </label>                             
+</div>
+</br>
+</br>
+
+<div>
+    <table class="aglin-line">
+        <tr>
+            <th>
+                 <div class="imgshow" >
+                 <div  style="background:#000;width:$post['width']px;height:10px;" ></div>
+                  <div class="imgDisplay" style="position:relative;background:#000;width:$post['width']px;height:$post['height']px;" >
+                    <img id='imgimg' width="$post['width']" height="$post['height']"  src="" style="top:0px; left:0px;position: absolute;z-index:1;"></img>
+                    <canvas id="imgcanvas" width="$post['width']" height="$post['height']"   style="top:0px; left:0px;position: absolute;z-index:2;"></canvas>
+                    <img id='loadingGif' width="$post['width']" height="$post['height']"  src="static/img/loading.gif" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.5);z-index:3;display:none"></img>
+                        
+                  </div>
+                  <div  style="background:#000;width:$post['width']px;height:10px;" ></div> 
+                </div>
+            </th>
+        </tr>
+    </table>
+    <div id="tableshow" class="aglin-line">
+    <div id="tablehead" class="aglin-line"></div>
+    <div id="tablebody" class="aglin-line"></div>
+    </div>
+</div>
+<script type="text/javascript">
+            imgUploadPreview();//预览上传文件
+            urlPreview();//预览url图片
+</script> 

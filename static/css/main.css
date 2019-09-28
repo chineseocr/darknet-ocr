@@ -1,0 +1,37 @@
+a.button { font-size:12px;}
+a.button:hover { font-size:18px;}
+.billname{ display:inline} 
+.imgInput{ display:inline} 
+.aglin-line{ display:inline} 
+
+label{
+    position: relative;
+}
+#imageButton{
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+table.gridtable {
+	font-family: verdana,arial,sans-serif;
+	font-size:10px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+table.gridtable th {
+	border-width: 1px;
+	padding: 10px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 10px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
