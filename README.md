@@ -1,8 +1,8 @@
-## 本项目基于darknet(https://github.com/pjreddie/darknet.git)框架实现CPTN版本自然场景文字检测 与CNN+CTCOCR文字识别
+## 本项目基于darknet(https://github.com/pjreddie/darknet.git)框架实现CTPN版本自然场景文字检测 与CNN+CTCOCR文字识别
 
 # 实现功能
 - [x]  CPU版本最短边608时，检测速度小于1秒；
-- [ ]  支持darknet直接训练CPTN（整理中）；
+- [ ]  支持darknet直接训练CTPN（整理中）；
 - [ ]  支持darknet直接训练CNN+CTC ocr（整理中）;
  
  
