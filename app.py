@@ -80,8 +80,10 @@ class TEXT:
                 isclass       = data.get('isclass',False)##是否自动进行票据分类
                 
                 if 'uuid' is not None and (url is not None or imgString is not None):
+                    t = time.time()
                     res = job(uuid,url,imgString,iscut,isclass,billModel,ip)
                     post.update(res)
+                    print('time:',time.time()-t)
                 else:
                     post["errCode"] = 1##参数缺失
                     

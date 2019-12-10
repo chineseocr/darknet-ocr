@@ -6,20 +6,34 @@ image
 """
 import cv2
 import numpy as np
-from config import textPath,anchors
+from config import textPath,anchors,GPU
 from helper.image import resize_img,get_origin_box,soft_max,reshape
 from helper.detectors import TextDetector
-
-textNet   =  cv2.dnn.readNetFromDarknet(textPath.replace('weights','cfg'),textPath)  
+if GPU:
+     from dnn.darknet import  load_net,predict_image,array_to_image
+     textNet = load_net(textPath.replace('.weights','.cfg').encode(),textPath.encode(), 0)
+else:
+    textNet   =  cv2.dnn.readNetFromDarknet(textPath.replace('weights','cfg'),textPath)  
+    
 
 def detect_box(image,scale=600,maxScale=900):
         H,W = image.shape[:2]
         image,rate = resize_img(image,scale,maxScale=maxScale)
         h,w = image.shape[:2]
-        inputBlob = cv2.dnn.blobFromImage(image, scalefactor=1.0, size=(w,h),swapRB=False ,crop=False);
-        outputName = textNet.getUnconnectedOutLayersNames()
-        textNet.setInput(inputBlob)
-        out  = textNet.forward(outputName)[0]
+        if GPU:
+            im = array_to_image(image)
+            res=predict_image(textNet,im)
+            scale=16
+            iw = int(np.ceil(im.w/scale))
+            ih = int(np.ceil(im.h/scale))
+            h,w = image.shape[:2] 
+            out = [ res[i] for i in range(40*ih*iw)] 
+            out=np.array(out).reshape((1,40,ih,iw))
+        else:
+            inputBlob = cv2.dnn.blobFromImage(image, scalefactor=1.0, size=(w,h),swapRB=False ,crop=False);
+            outputName = textNet.getUnconnectedOutLayersNames()
+            textNet.setInput(inputBlob)
+            out  = textNet.forward(outputName)[0]
         clsOut  = reshape(out[:,:20,...])
         boxOut  = reshape(out[:,20:,...])
         boxes  = get_origin_box((w,h),anchors,boxOut[0])        
