@@ -9,7 +9,8 @@
  
 ## 下载text.weights模型文件   
 模型文件地址:
-* [baidu pan](https://pan.baidu.com/s/1qyE_uCyMJCQmHQemn3NqEQ)
+* http://chineseocr.com:9990/static/models/darknet-ocr/text.weights 
+
 
 拷贝text.weights文件到models目录
 
