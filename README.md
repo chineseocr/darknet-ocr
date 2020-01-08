@@ -10,8 +10,8 @@
 - [ ]  多语言（ 藏语、蒙古语、 朝鲜语、 日本语、 韩语）;
  
  
-##模型文件（参考models目录）
-下载地址:http://www.chineseocr.com:9990/static/models/darknet-ocr/ 
+##  模型文件（参考models目录）  
+下载地址:http://www.chineseocr.com:9990/static/models/darknet-ocr/   
 
 ## 编译对GPU的支持  
 ``` Bash
