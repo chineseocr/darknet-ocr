@@ -13,4 +13,6 @@ buil
 .DS_Store*
 .ipynb_checkpoints
 __pycache__
-darknet 
+*.out
+*.a
+*.o 

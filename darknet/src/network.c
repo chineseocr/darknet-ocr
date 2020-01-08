@@ -38,7 +38,6 @@ load_args get_base_args(network *net)
     args.w = net->w;
     args.h = net->h;
     args.size = net->w;
-
     args.min = net->min_crop;
     args.max = net->max_crop;
     args.angle = net->angle;
@@ -504,6 +503,7 @@ float *network_predict(network *net, float *input)
     forward_network(net);
     float *out = net->output;
     *net = orig;
+    
     return out;
 }
 
@@ -589,14 +589,16 @@ float *network_predict_image(network *net, image im)
 
 float *network_predict_image_vgg(network *net, image im)
 {
-    // use  for vgg text net
+    // use  for vgg text net and resize_network
     int w = im.w;
     int h = im.h;
     //image imr = letterbox_image(im, w, h);
-    resize_network(net, w, h);
+    resize_network(net, w, h);//resize net for image w,h
     set_batch_network(net, 1);
     float *p = network_predict(net, im.data);
     //free_image(imr);
+    
+    
     return p;
 }
 
@@ -955,90 +957,6 @@ void distribute_weights(layer l, layer base)
 }
 
 
-/*
-
-   void pull_updates(layer l)
-   {
-   if(l.type == CONVOLUTIONAL){
-   cuda_pull_array(l.bias_updates_gpu, l.bias_updates, l.n);
-   cuda_pull_array(l.weight_updates_gpu, l.weight_updates, l.nweights);
-   if(l.scale_updates) cuda_pull_array(l.scale_updates_gpu, l.scale_updates, l.n);
-   } else if(l.type == CONNECTED){
-   cuda_pull_array(l.bias_updates_gpu, l.bias_updates, l.outputs);
-   cuda_pull_array(l.weight_updates_gpu, l.weight_updates, l.outputs*l.inputs);
-   }
-   }
-
-   void push_updates(layer l)
-   {
-   if(l.type == CONVOLUTIONAL){
-   cuda_push_array(l.bias_updates_gpu, l.bias_updates, l.n);
-   cuda_push_array(l.weight_updates_gpu, l.weight_updates, l.nweights);
-   if(l.scale_updates) cuda_push_array(l.scale_updates_gpu, l.scale_updates, l.n);
-   } else if(l.type == CONNECTED){
-   cuda_push_array(l.bias_updates_gpu, l.bias_updates, l.outputs);
-   cuda_push_array(l.weight_updates_gpu, l.weight_updates, l.outputs*l.inputs);
-   }
-   }
-
-   void update_layer(layer l, network net)
-   {
-   int update_batch = net.batch*net.subdivisions;
-   float rate = get_current_rate(net);
-   l.t = get_current_batch(net);
-   if(l.update_gpu){
-   l.update_gpu(l, update_batch, rate*l.learning_rate_scale, net.momentum, net.decay);
-   }
-   }
-   void merge_updates(layer l, layer base)
-   {
-   if (l.type == CONVOLUTIONAL) {
-   axpy_cpu(l.n, 1, l.bias_updates, 1, base.bias_updates, 1);
-   axpy_cpu(l.nweights, 1, l.weight_updates, 1, base.weight_updates, 1);
-   if (l.scale_updates) {
-   axpy_cpu(l.n, 1, l.scale_updates, 1, base.scale_updates, 1);
-   }
-   } else if(l.type == CONNECTED) {
-   axpy_cpu(l.outputs, 1, l.bias_updates, 1, base.bias_updates, 1);
-   axpy_cpu(l.outputs*l.inputs, 1, l.weight_updates, 1, base.weight_updates, 1);
-   }
-   }
-
-   void distribute_updates(layer l, layer base)
-   {
-   if(l.type == CONVOLUTIONAL || l.type == DECONVOLUTIONAL){
-   cuda_push_array(l.bias_updates_gpu, base.bias_updates, l.n);
-   cuda_push_array(l.weight_updates_gpu, base.weight_updates, l.nweights);
-   if(base.scale_updates) cuda_push_array(l.scale_updates_gpu, base.scale_updates, l.n);
-   } else if(l.type == CONNECTED){
-   cuda_push_array(l.bias_updates_gpu, base.bias_updates, l.outputs);
-   cuda_push_array(l.weight_updates_gpu, base.weight_updates, l.outputs*l.inputs);
-   }
-   }
- */
-
-/*
-   void sync_layer(network *nets, int n, int j)
-   {
-   int i;
-   network net = nets[0];
-   layer base = net.layers[j];
-   scale_weights(base, 0);
-   for (i = 0; i < n; ++i) {
-   cuda_set_device(nets[i].gpu_index);
-   layer l = nets[i].layers[j];
-   pull_weights(l);
-   merge_weights(l, base);
-   }
-   scale_weights(base, 1./n);
-   for (i = 0; i < n; ++i) {
-   cuda_set_device(nets[i].gpu_index);
-   layer l = nets[i].layers[j];
-   distribute_weights(l, base);
-   }
-   }
- */
-
 void sync_layer(network **nets, int n, int j)
 {
     int i;
@@ -1084,7 +1002,8 @@ pthread_t sync_layer_in_thread(network **nets, int n, int j)
     return thread;
 }
 
-void sync_nets(network **nets, int n, int interval)
+void sync_n
+ets(network **nets, int n, int interval)
 {
     int j;
     int layers = nets[0]->n;

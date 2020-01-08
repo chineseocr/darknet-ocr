@@ -182,7 +182,7 @@ function plotBox(boxes){
                         ctx.lineTo(x4, y4);
                         ctx.moveTo(x4, y4);
                         ctx.lineTo(x1, y1);
-                        ctx.fillText('prob:'+boxes[i]['prob'], x1-5, y1-5);
+                        ctx.fillText('prob:'+boxes[i]['prob']+' text:'+boxes[i]['text'], x1-5, y1-5);
                 }
                 ctx.stroke();
                 ctx.closePath();
