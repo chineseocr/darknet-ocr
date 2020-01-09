@@ -3,7 +3,8 @@
 ##  实现功能    
 - [x]  文字检测；  
 - [x]  文字识别；  
-- [x]  支持GPU/CPU，CPU优化（opencv dnn）；  
+- [x]  支持GPU/CPU，CPU优化（opencv dnn）； 
+- [ ]  文字方向检测（4分类模型）； 
 - [ ]  支持PDF文档识别；
 - [ ]  文字检测训练；  
 - [ ]  CNN+CTC ocr训练;
