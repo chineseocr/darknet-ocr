@@ -1,3 +1,2 @@
 ## OCR  chinese(中文)
-下载地址 http://www.chineseocr.com:9990/static/models/darknet-ocr/models/ocr/chinese/ocr.weights 
-
+11K中文字符，训练集1000K，准确率96.4%， 暂时为开放。

@@ -66,6 +66,7 @@ def text_ocr(img,scale,maxScale,TEXT_LINE_SCORE):
             tmpImg = rotate_cut_img(im,box,leftAdjust=0.01,rightAdjust=0.01)
             text = ocrModel(tmpImg)
             result.append({'text':text,'box':[ int(x) for x in box],'prob':round(float(scores[i]),2)})
+    result = sorted(result,key=lambda x:sum(x['box'][1::2]))
     return result
         
         
