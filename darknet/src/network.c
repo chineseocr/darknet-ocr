@@ -1002,8 +1002,7 @@ pthread_t sync_layer_in_thread(network **nets, int n, int j)
     return thread;
 }
 
-void sync_n
-ets(network **nets, int n, int interval)
+void sync_nets(network **nets, int n, int interval)
 {
     int j;
     int layers = nets[0]->n;
