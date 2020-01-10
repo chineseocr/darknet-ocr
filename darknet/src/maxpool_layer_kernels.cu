@@ -52,7 +52,8 @@ __global__ void backward_maxpool_layer_kernel(int n, int in_h, int in_w, int in_
     int h = (in_h + pad - size)/strideh + 1;
     int w = (in_w + pad - size)/stridew + 1;
     int c = in_c;
-    int area = (size-1)/stridew;
+    int areah = (size-1)/strideh;//backward_maxpool_layer_kernel with each stride
+    int areaw = (size-1)/stridew;
 
     int id = (blockIdx.x + blockIdx.y*gridDim.x) * blockDim.x + threadIdx.x;
     if(id >= n) return;
@@ -71,8 +72,8 @@ __global__ void backward_maxpool_layer_kernel(int n, int in_h, int in_w, int in_
 
     float d = 0;
     int l, m;
-    for(l = -area; l < area+1; ++l){
-        for(m = -area; m < area+1; ++m){
+    for(l = -areah; l < areah+1; ++l){
+        for(m = -areaw; m < areaw+1; ++m){
             int out_w = (j-w_offset)/stridew + m;
             int out_h = (i-h_offset)/strideh + l;
             int out_index = out_w + w*(out_h + h*(k + c*b));
