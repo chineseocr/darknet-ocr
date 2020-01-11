@@ -4,7 +4,7 @@
 config
 @author: chineseocr
 """
-ocrType = 'chinese-relu'
+ocrType = 'chinese'
 ocrPath  = 'models/ocr/{}/ocr.weights'.format(ocrType)
 textPath = 'models/text/text.weights'
 darkRoot ='darknet/libdarknet.so' ##darknet 
