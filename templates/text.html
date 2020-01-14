@@ -53,10 +53,22 @@ $for bill in post['billList']:
             </th>
         </tr>
     </table>
-    <div id="tableshow" class="aglin-line">
-    <div id="tablehead" class="aglin-line"></div>
-    <div id="tablebody" class="aglin-line"></div>
-    </div>
+    
+     <!#############################识别结果######################################################### ---->   
+                <div style="position: absolute; left: 68%; top: 12%;" >
+                    <div class="json">
+                        <div class="json-request-title" id="billmodelname">$post.get('name')</div>
+                            <div style="height:500px;width:300px; overflow:scroll;">
+                                <div id="billNameList"></div>
+                                <div id="mytable"></div>
+                                
+                            </div>
+                        
+                    </div>
+                </div>
+             </div>       
+<!##############################识别结果######################################################### ---->
+    
 </div>
 <script type="text/javascript">
             imgUploadPreview();//预览上传文件

@@ -1,23 +1,26 @@
 ## 本项目基于darknet(https://github.com/pjreddie/darknet.git)框架实现CTPN版本自然场景文字检测 与CNN+CTCOCR文字识别
 
-# 实现功能
-- [x]  CPU版本最短边608时，检测速度小于1秒；
-- [x]  支持GPU
-- [ ]  支持darknet直接训练CTPN（整理中）；
-- [ ]  支持darknet直接训练CNN+CTC ocr（整理中）;
+##  实现功能    
+- [x]  文字检测；  
+- [x]  文字识别；  
+- [x]  支持GPU/CPU，CPU优化（opencv dnn）； 
+- [ ]  文字方向检测（4分类模型）； 
+- [ ]  支持PDF文档识别；
+- [ ]  文字检测训练；  
+- [ ]  CNN+CTC ocr训练;
+- [ ]  多语言（ 藏语、蒙古语、 朝鲜语、 日本语、 韩语）;
  
  
-## 下载text.weights模型文件   
-模型文件地址:
-* http://www.chineseocr.com:9990/static/models/darknet-ocr/text.weights 
-
-
-拷贝text.weights文件到models目录
+##  模型文件（参考models目录）  
+下载地址:http://www.chineseocr.com:9990/static/models/darknet-ocr/   
 
 ## 编译对GPU的支持  
-`
-sh make-gpu.sh
-`
+``` Bash
+## cpu 
+cd darknet && cp  Makefile-cpu Makefile && make
+## GPU
+cd darknet && cp  Makefile-GPU Makefile && make
+```
 
 ## web服务启动(支持文件上传及URL图像)
 ``` Bash
@@ -40,6 +43,11 @@ http://127.0.0.1:8080/text
 <img width="500" height="300" src="https://github.com/chineseocr/darknet-ocr/blob/master/test/bank.png"/>  
 
 ## 参考
-1. yolo3 https://github.com/pjreddie/darknet.git               
+1. darknet https://github.com/pjreddie/darknet.git               
 2. ctpn  https://github.com/eragonruan/text-detection-ctpn    
 3. CTPN  https://github.com/tianzhi0549/CTPN       
+4. chineseocr https://github.com/chineseocr/chineseocr
+
+## 技术支持合作  
+mail:chineseocr@hotmail.com     
+  

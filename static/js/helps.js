@@ -148,7 +148,24 @@ function clearCan(){
            }
 
 
-
+function createTable(result){
+        //根据获取的数据，创建table
+        jQuery("#mytable").empty();
+        var jsObject = result;
+        imgBoxes=[];
+        //var jsObject = [{"name":10,"value":20},{"name":10,"value":20}];
+        
+        var tableString ="<table id='billmodeltable' class='gridtable'><tr><th>序号</th><th>值</th></tr>"
+                        
+        for(var i=0;i<jsObject.length;i++){
+            tableString+="<tr><td><p>"+i+"</p></td><td><p contenteditable='true'>"+jsObject[i]["text"]+"</p></td></tr>";
+            imgBoxes.push(jsObject[i]["box"]);
+        }
+        tableString+="</table>";
+        //jQuery("#mytable").append(p);
+        jQuery("#mytable").append(tableString);
+    }
+    
 
 function plotBox(boxes){
             /*根据box 绘制box
@@ -182,12 +199,13 @@ function plotBox(boxes){
                         ctx.lineTo(x4, y4);
                         ctx.moveTo(x4, y4);
                         ctx.lineTo(x1, y1);
-                        ctx.fillText('prob:'+boxes[i]['prob'], x1-5, y1-5);
+                        //ctx.fillText('prob:'+boxes[i]['prob']+' text:'+i, x1-5, y1-5);
                 }
                 ctx.stroke();
                 ctx.closePath();
                 
             } 
+            createTable(boxes);
 
             }
 

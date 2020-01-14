@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-image
+text detect
 @author: chineseocr
 """
 import cv2
