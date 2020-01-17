@@ -1,5 +1,5 @@
 ## 本项目基于darknet(https://github.com/pjreddie/darknet.git)框架实现CTPN版本自然场景文字检测 与CNN+CTCOCR文字识别
-
+## python版本（3.6）
 ##  实现功能    
 - [x]  文字检测；  
 - [x]  文字识别；  
