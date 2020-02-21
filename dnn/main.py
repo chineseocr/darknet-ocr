@@ -4,9 +4,10 @@
 main
 @author: chineseocr
 @mail: chineseocr@hotmail.com
+adjust ocr ,ouput char prob 
 """
 
-from dnn.ocr import predict_darknet as ocrModel
+from dnn.ocr import predict  as ocrModel
 from dnn.text import detect_lines as textModel
 from PIL import Image
 import numpy as np
@@ -65,7 +66,10 @@ def text_ocr(img,scale,maxScale,TEXT_LINE_SCORE):
         if scores[i]>TEXT_LINE_SCORE:
             tmpImg = rotate_cut_img(im,box,leftAdjust=0.01,rightAdjust=0.01)
             text = ocrModel(tmpImg)
-            result.append({'text':text,'box':[ int(x) for x in box],'prob':round(float(scores[i]),2)})
+            if text['text']!='':
+                text['box'] = [ int(x) for x in box]
+                text['textprob']=round(float(scores[i]),2)
+                result.append(text)
     result = sorted(result,key=lambda x:sum(x['box'][1::2]))
     return result
         

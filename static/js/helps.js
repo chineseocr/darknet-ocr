@@ -1,5 +1,4 @@
 function getValue(value,that){
-        //勾选需要识别的票据类型
         var divStyle = document.getElementsByClassName("billname");
         for(var i=0;i<divStyle.length;i++){
             divStyle[i].style.background = 'white';
@@ -155,14 +154,18 @@ function createTable(result){
         imgBoxes=[];
         //var jsObject = [{"name":10,"value":20},{"name":10,"value":20}];
         
-        var tableString ="<table id='billmodeltable' class='gridtable'><tr><th>序号</th><th>值</th></tr>"
+        var tableString ="<table id='billmodeltable' class='gridtable'><tr><th>序号</th><th>值</th><th>文本检测置信度</th><th>OCR置信度</th></tr>"
                         
         for(var i=0;i<jsObject.length;i++){
-            tableString+="<tr><td><p>"+i+"</p></td><td><p contenteditable='true'>"+jsObject[i]["text"]+"</p></td></tr>";
+            var index = "<td>"+i+"</td>";
+            var text     =  "<td><p contenteditable='true'>"+ jsObject[i]["text"]+"</p></td>";
+            var textProb =  "<td>"+ jsObject[i]["textprob"]+ "</td>";
+            var ocrProb  =  "<td>"+ jsObject[i]["prob"]+ "</td>" ;
+            tableString += "<tr>"+index+text+textProb+ocrProb;
+            
             imgBoxes.push(jsObject[i]["box"]);
         }
         tableString+="</table>";
-        //jQuery("#mytable").append(p);
         jQuery("#mytable").append(tableString);
     }
     

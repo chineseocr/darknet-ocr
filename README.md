@@ -1,5 +1,5 @@
 ## 本项目基于darknet(https://github.com/pjreddie/darknet.git)框架实现CTPN版本自然场景文字检测 与CNN+CTCOCR文字识别
-## python版本（3.6）
+## 支持系统:mac/ubuntu python=3.6  
 ##  实现功能    
 - [x]  文字检测；  
 - [x]  文字识别；  
@@ -16,11 +16,12 @@
 
 ## 编译对GPU的支持  
 ``` Bash
-## cpu 
-cd darknet && cp  Makefile-cpu Makefile && make
 ## GPU
 cd darknet && cp  Makefile-GPU Makefile && make
 ```
+##  CPU优化
+参考opencv版本编译 : https://github.com/chineseocr/opencv-for-darknet.git   
+
 
 ## web服务启动(支持文件上传及URL图像)
 ``` Bash
@@ -34,13 +35,9 @@ http://127.0.0.1:8080/text
 
 ## 识别结果展示
 
-<img width="500" height="300" src="https://github.com/chineseocr/darknet-ocr/blob/master/test/img-demo.png"/>  
-<img width="500" height="300" src="https://github.com/chineseocr/darknet-ocr/blob/master/test/text.png"/>   
-<img width="500" height="300" src="https://github.com/chineseocr/darknet-ocr/blob/master/test/song.png"/>   
-<img width="500" height="300" src="https://github.com/chineseocr/darknet-ocr/blob/master/test/dinge.png"/>   
-<img width="500" height="300" src="https://github.com/chineseocr/darknet-ocr/blob/master/test/ocr.png"/>   
-<img width="500" height="300" src="https://github.com/chineseocr/darknet-ocr/blob/master/test/sh.png"/>  
-<img width="500" height="300" src="https://github.com/chineseocr/darknet-ocr/blob/master/test/bank.png"/>  
+<img width="500" height="300" src="https://github.com/chineseocr/darknet-ocr/blob/master/test/demo-line.png"/>  
+<img width="500" height="300" src="https://github.com/chineseocr/darknet-ocr/blob/master/test/demo-rotate.png"/>   
+<img width="500" height="300" src="https://github.com/chineseocr/darknet-ocr/blob/master/test/japanese-demo.png"/>   
 
 ## 参考
 1. darknet https://github.com/pjreddie/darknet.git               

@@ -6,8 +6,6 @@ import web
 web.config.debug  = False
 import uuid
 import json
-import os
-import time
 import cv2
 import numpy as np
 from helper.image import read_url_img,base64_to_PIL,get_now
