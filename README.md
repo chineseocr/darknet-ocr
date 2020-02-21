@@ -22,7 +22,12 @@ cd darknet && cp  Makefile-GPU Makefile && make
 ##  CPU优化
 参考opencv版本编译 : https://github.com/chineseocr/opencv-for-darknet.git   
 
-
+## docker镜像服务（CPU优化版本）
+下载镜像 链接:https://pan.baidu.com/s/12F9AYVyBTz34UCXeWj3ATA  密码:5lyz
+```
+docker load -i darknet-ocr.tar
+docker run -it -p 8080:8080 darknet-ocr:1.0 python app.py
+````
 ## web服务启动(支持文件上传及URL图像)
 ``` Bash
 cd darknet-ocr
