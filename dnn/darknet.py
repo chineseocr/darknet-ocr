@@ -19,8 +19,9 @@ def sample(probs):
     return len(probs)-1
 
 def c_array(ctype, values):
-    arr = (ctype*len(values))()
-    arr[:] = values
+    arr = (ctype * len(values))()
+    values = values.astype(ctype)
+    memmove(arr, values.ctypes.data, values.nbytes)
     return arr
 
 class BOX(Structure):
@@ -115,8 +116,7 @@ predict_image.restype = POINTER(c_float)
 import numpy as np
 import cv2
 def array_to_image(image):
-    boxed_image = np.array(image)
-    boxed_image = np.array(cv2.split(boxed_image))
+    boxed_image = np.array(cv2.split(image))
     c = boxed_image.shape[0]
     h = boxed_image.shape[1]
     w = boxed_image.shape[2]

@@ -128,10 +128,10 @@ def nms(boxes, scores, score_threshold=0.5, nms_threshold=0.3):
         xmin,ymin,xmax,ymax = box
         w = xmax-xmin
         h = ymax-ymin
-        return [round(xmin,4),round(ymin,4),round(w,4),round(h,4)]
+        return [xmin, ymin, w, h]
     
     newBoxes = [ box_to_center(box) for box in boxes]
-    newscores = [ round(float(x),6) for x in scores]
+    newscores = [ float(x) for x in scores]
     index = cv2.dnn.NMSBoxes(newBoxes, newscores, score_threshold=score_threshold, nms_threshold=nms_threshold)
     if len(index)>0:
         index = index.reshape((-1,))
