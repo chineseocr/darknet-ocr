@@ -12,7 +12,7 @@
  
  
 ##  模型文件（参考models目录）  
-下载地址:http://www.chineseocr.com:9990/static/models/darknet-ocr/   
+下载地址:http://59.110.234.163:9990/static/models/darknet-ocr/   
 
 ## 编译对GPU的支持  
 ``` Bash
@@ -52,4 +52,4 @@ http://127.0.0.1:8080/text
 
 ## 技术支持合作  
 mail:chineseocr@hotmail.com     
-  
+wechat:lywen52  
