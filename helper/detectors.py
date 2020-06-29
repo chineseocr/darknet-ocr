@@ -30,6 +30,10 @@ class TextDetector:
                TEXT_LINE_NMS_THRESH = 0.3,
                TEXT_LINE_SCORE=0.7
                ):
+        ind = scores>TEXT_PROPOSALS_MIN_SCORE
+        text_proposals = text_proposals[ind]
+        scores = scores[ind]
+        
         text_proposals, scores = nms(text_proposals,scores,TEXT_PROPOSALS_MIN_SCORE,TEXT_PROPOSALS_NMS_THRESH)
         if len(text_proposals)>0:
             scores                 = normalize(scores)
