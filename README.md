@@ -1,6 +1,8 @@
 ## 本项目基于darknet(https://github.com/pjreddie/darknet.git)框架实现CTPN版本自然场景文字检测 与CNN+CTCOCR文字识别
-## 支持系统:mac/ubuntu python=3.6  
+## 目前支持系统:mac/ubuntu python=3.6  
 ##  实现功能    
+- [x]  支持系统，macOs/linux；
+- [ ]  支持系统windows；
 - [x]  文字检测；  
 - [x]  文字识别；  
 - [x]  支持GPU/CPU，CPU优化（opencv dnn）； 
@@ -9,8 +11,13 @@
 - [ ]  文字检测训练；  
 - [ ]  CNN+CTC ocr训练;
 - [ ]  多语言（ 藏语、蒙古语、 朝鲜语、 日本语、 韩语）;
- 
- 
+
+## ocr训练数据集  
+ocr ctc训练数据集(压缩包解码:chineseocr)  
+百度网盘地址:链接: https://pan.baidu.com/s/1UcUKUUELLwdM29zfbztzdw 提取码: atwn   
+gofile地址:http://gofile.me/4Nlqh/uT32hAjbx 密码 https://github.com/chineseocr/chineseocr     
+
+
 ##  模型文件（参考models目录）  
 下载地址:http://59.110.234.163:9990/static/models/darknet-ocr/   
 
