@@ -19,7 +19,7 @@ gofile地址:http://gofile.me/4Nlqh/uT32hAjbx 密码 https://github.com/chineseo
 
 
 ##  模型文件（参考models目录）  
-下载地址:http://59.110.234.163:9990/static/models/darknet-ocr/   
+下载地址:http://demo.xliane.com:11000/static/models/darknet-ocr/
 
 ## 编译对GPU的支持  
 ``` Bash
