@@ -7,6 +7,8 @@ ocr
 ## add opencv dnn for relu and stride 
 ## add ocr prob for every char
 """
+from ctypes import memmove
+
 import cv2
 import os
 import time
@@ -84,8 +86,9 @@ def predict_darknet(image):
     res=predict_image(ocrNet,im)
     outW = int(np.ceil(w/4)-3)
     nchars = len(charactersPred)
-    out = [ res[i] for i in range(outW*nchars)] 
-    out = np.array(out).reshape((nchars,outW))
+    out = np.zeros(outW * nchars, dtype=res._type_)
+    memmove(out.ctypes.data, res, out.nbytes)
+    out = out.reshape((nchars, outW))
     out = out.transpose((1,0))
     out = softmax(out)
     

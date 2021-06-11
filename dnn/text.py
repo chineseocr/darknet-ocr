@@ -4,6 +4,8 @@
 text detect
 @author: chineseocr
 """
+from ctypes import memmove
+
 import cv2
 import numpy as np
 from config import textPath,anchors,GPU
@@ -26,9 +28,10 @@ def detect_box(image,scale=600,maxScale=900):
             scale=16
             iw = int(np.ceil(im.w/scale))
             ih = int(np.ceil(im.h/scale))
-            h,w = image.shape[:2] 
-            out = [ res[i] for i in range(40*ih*iw)] 
-            out=np.array(out).reshape((1,40,ih,iw))
+            h,w = image.shape[:2]
+            out = np.zeros(40 * ih * iw, dtype=res._type_)
+            memmove(out.ctypes.data, res, out.nbytes)
+            out = out.reshape((1, 40, ih, iw))
         else:
             inputBlob = cv2.dnn.blobFromImage(image, scalefactor=1.0, size=(w,h),swapRB=False ,crop=False);
             outputName = textNet.getUnconnectedOutLayersNames()
