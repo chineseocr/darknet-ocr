@@ -1,5 +1,5 @@
 numpy
-opencv-contrib-python==4.0.0.21
+opencv-contrib-python==4.1.1.26
 pillow
 h5py
 requests
